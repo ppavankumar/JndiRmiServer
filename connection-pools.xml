@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<connection-pools>
+	<!--
+		<connection-pool> <JndiName>jdbc/ds1</JndiName>
+		<DriverName>org.hsqldb.jdbcDriver</DriverName>
+		<DBUrl>jdbc:hsqldb:hsql://localhost:9001/zdb</DBUrl>
+		<DBUsername>pavan</DBUsername> <DBPassword>123456</DBPassword>
+		</connection-pool>
+	-->
+
+	<connection-pool>
+		<JndiName>ds1</JndiName>
+		<DriverName>com.mysql.jdbc.Driver</DriverName>
+		<DBUrl>jdbc:mysql://localhost:3306/pavandb</DBUrl>
+		<DBUsername>root</DBUsername>
+		<DBPassword>root@123</DBPassword>
+	</connection-pool>
+
+	<connection-pool>
+		<JndiName>ds2</JndiName>
+		<DriverName>org.h2.Driver</DriverName>
+		<DBUrl>jdbc:h2:D:\pavan\mysofts\h2\workspace\TestDB\testdb.db</DBUrl>
+		<DBUsername>pavan</DBUsername>
+		<DBPassword>123456</DBPassword>
+	</connection-pool>
+</connection-pools>
