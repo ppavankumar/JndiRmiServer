@@ -11,7 +11,7 @@
 	<connection-pool>
 		<JndiName>ds2</JndiName>
 		<DriverName>org.sqlite.JDBC</DriverName>
-		<DBUrl>jdbc:sqlite:C:\Users\Shravan\Desktop\pavan\sqlite\employees.db</DBUrl>
+		<DBUrl>jdbc:sqlite:employees.db</DBUrl>
 		<DBUsername></DBUsername>
 		<DBPassword></DBPassword>
 	</connection-pool>
