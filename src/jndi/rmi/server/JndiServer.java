@@ -4,5 +4,9 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 public interface JndiServer extends java.rmi.Remote {
-	DataSource getDataSource(String jndiLookup) throws java.rmi.RemoteException, NamingException;
+	DataSource getDataSource(String jndiLookup)
+			throws java.rmi.RemoteException, NamingException;
+
+	DataSource getDataSource(String driverClassName, String jndiLookup)
+			throws java.rmi.RemoteException, NamingException;
 }

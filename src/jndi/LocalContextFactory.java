@@ -25,6 +25,7 @@ public class LocalContextFactory {
 
 		try {
 			LocalContext ctx = new LocalContext();
+			System.out.println(databaseDriver);
 			Class.forName(databaseDriver);
 			NamingManager.setInitialContextFactoryBuilder(ctx);
 			return ctx;

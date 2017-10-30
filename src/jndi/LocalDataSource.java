@@ -19,18 +19,28 @@ public class LocalDataSource implements DataSource, Serializable {
 	private String connectionString;
 	private String username;
 	private String password;
+	private String driverClassName;
 
-	LocalDataSource(String connectionString, String username, String password) {
+	LocalDataSource(String connectionString, String username, String password,
+			String driverClassName) {
 		this.connectionString = connectionString;
 		this.username = username;
 		this.password = password;
+		this.driverClassName = driverClassName;
 	}
 
 	public Connection getConnection() throws SQLException {
-		return DriverManager.getConnection(connectionString, username, password);
+		try {
+			Class.forName(driverClassName);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return DriverManager
+				.getConnection(connectionString, username, password);
 	}
 
-	public Connection getConnection(String arg0, String arg1) throws SQLException {
+	public Connection getConnection(String arg0, String arg1)
+			throws SQLException {
 		return getConnection();
 	}
 

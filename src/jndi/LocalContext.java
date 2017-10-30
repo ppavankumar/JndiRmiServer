@@ -10,7 +10,8 @@ import javax.naming.NamingException;
 import javax.naming.spi.InitialContextFactory;
 import javax.naming.spi.InitialContextFactoryBuilder;
 
-public class LocalContext extends InitialContext implements InitialContextFactoryBuilder, InitialContextFactory {
+public class LocalContext extends InitialContext implements
+		InitialContextFactoryBuilder, InitialContextFactory {
 
 	Map<Object, Object> dataSources;
 
@@ -19,16 +20,20 @@ public class LocalContext extends InitialContext implements InitialContextFactor
 		dataSources = new HashMap<Object, Object>();
 	}
 
-	public void addDataSource(String name, String connectionString, String username, String password) {
-		this.dataSources.put("java:comp:/" + name, new LocalDataSource(connectionString, username, password));
+	public void addDataSource(String name, String connectionString,
+			String username, String password, String driverClassName) {
+		this.dataSources.put("java:comp:/" + name, new LocalDataSource(
+				connectionString, username, password, driverClassName));
 	}
 
-	public InitialContextFactory createInitialContextFactory(Hashtable<?, ?> hsh) throws NamingException {
+	public InitialContextFactory createInitialContextFactory(Hashtable<?, ?> hsh)
+			throws NamingException {
 		dataSources.putAll(hsh);
 		return this;
 	}
 
-	public Context getInitialContext(Hashtable<?, ?> arg0) throws NamingException {
+	public Context getInitialContext(Hashtable<?, ?> arg0)
+			throws NamingException {
 		return this;
 	}
 

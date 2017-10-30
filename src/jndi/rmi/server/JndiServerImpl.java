@@ -67,10 +67,16 @@ public class JndiServerImpl implements JndiServer {
 			else
 				ctx.close();
 			for (int i = 0; i < jndiList.size(); i++) {
+				// if (ctx == null)
+				// ctx = LocalContextFactory.createLocalContext(jndiList
+				// .get(i).getJndiDriverName());
+				// else
+				// ctx.close();
 				ctx.addDataSource(jndiList.get(i).getJndiName(), jndiList
 						.get(i).getJndiDBUrl(),
 						jndiList.get(i).getJndiDBUser(), jndiList.get(i)
-								.getJndiDBPass());
+								.getJndiDBPass(), jndiList.get(i)
+								.getJndiDriverName());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -80,6 +86,18 @@ public class JndiServerImpl implements JndiServer {
 	public DataSource getDataSource(String jndiLookup)
 			throws java.rmi.RemoteException, NamingException {
 		this.setLocalContext();
+		DataSource ds = (DataSource) new InitialContext().lookup(jndiLookup);
+		return ds;
+	}
+
+	public DataSource getDataSource(String driverClassName, String jndiLookup)
+			throws java.rmi.RemoteException, NamingException {
+		this.setLocalContext();
+		try {
+			Class.forName(driverClassName);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		DataSource ds = (DataSource) new InitialContext().lookup(jndiLookup);
 		return ds;
 	}
